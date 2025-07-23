@@ -15,7 +15,17 @@ Question: Select all numeric columns except float from the DataFrame `dft`.
 Answer:
 
 ```python
+dft = pd.DataFrame(
+    {
+        "A": np.random.rand(3), 
+        "B": 1, 
+        "C": "foo", 
+        "D": pd.Timestamp("20010102"), 
+        "E": pd.Series([1.0] * 3).astype("float32"), 
+        "F": False, 
+        "G": pd.Series([1] * 3, dtype="int8")})
 
+dft.select_dtypes(include="number", exclude"float")
 ```
 
 ### Question 2
@@ -25,7 +35,7 @@ Question: How do you return the last 3 rows of a DataFrame `df`?
 Answer:
 
 ```python
-
+df.tail(3)
 ```
 
 ### Question 3
@@ -35,7 +45,7 @@ Question: Return the minimum and maximum of a Series `x` as a new Series with th
 Answer:
 
 ```python
-
+pd.Series([x.min(), x.max()], index=["min", "max"])
 ```
 
 ### Question 4
@@ -45,7 +55,7 @@ Question: Multiply `df1` and `df2` (two DataFrames) with a `fill_value` of 1.
 Answer:
 
 ```python
-
+df1.mul(df2, fill_value=1)
 ```
 
 ### Question 5
@@ -59,7 +69,7 @@ nested_dict = {'A': {'a': 1, 'b': 2}, 'B': {'a': 3, 'b': 4}}
 Answer:
 
 ```python
-
+pd.DataFrame.from_dict(nested_dict, orient="index")
 ```
 
 ## Submission
